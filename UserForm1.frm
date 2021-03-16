@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "UserForm1"
-   ClientHeight    =   7845
+   ClientHeight    =   3105
    ClientLeft      =   45
    ClientTop       =   375
-   ClientWidth     =   6930
+   ClientWidth     =   4365
    OleObjectBlob   =   "UserForm1.frx":0000
    StartUpPosition =   1  '所有者中心
 End
@@ -19,6 +19,9 @@ Private Sub CommandButton1_Click()
     TextBox1.Enabled = False
     CommandButton1.Enabled = False
     CommandButton2.Enabled = False
+    
+
+    
     '定义变量
     '底板信息
     Dim NegativeName1, NegativePath1 As String '新家客日报_模板文件位置，文件名称
@@ -45,6 +48,7 @@ Private Sub CommandButton1_Click()
     
     
     '变量赋值
+    
     pth = ThisWorkbook.Path
     pth = Left(pth, Len(pth) - 2)
     
@@ -101,64 +105,65 @@ Private Sub CommandButton1_Click()
 '
 
 '    '判断是否存在文件
-'
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
-'    If Dir(pth & "原始数据\已归档\" & Filename & ".csv", vbDirectory) = vbNullString Then
-'        MsgBox ("未找到已归档文件！")
-'        TextBox1.Enabled = True
-'        CommandButton1.Enabled = True
-'        CommandButton2.Enabled = True
-'        Exit Sub
-'    End If
 
+    If Dir(NegativePath1, vbDirectory) = vbNullString Then
+        MsgBox ("未找到模板文件_新家客日报！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    If Dir(NegativePath2, vbDirectory) = vbNullString Then
+        MsgBox ("未找到模板文件_日报专用模板！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    
+    If Dir(pth & "原始数据\" & "新增量\" & TextBox1.Text & ".csv", vbDirectory) = vbNullString Then
+        MsgBox ("未找到新增量文件！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    If Dir(pth & "原始数据\" & "装机量\" & TextBox1.Text & ".csv", vbDirectory) = vbNullString Then
+        MsgBox ("未找到装机量文件！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    If Dir(pth & "原始数据\" & "运行中\" & TextBox1.Text & ".csv", vbDirectory) = vbNullString Then
+        MsgBox ("未找到运行中文件！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    
+    If Dir(pth & "原始数据\" & "待装池\" & TextBox1.Text & ".xls", vbDirectory) = vbNullString Then
+        MsgBox ("未找到待装池文件！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    If Dir(pth & "原始数据\" & "扩容池\" & TextBox1.Text & ".xls", vbDirectory) = vbNullString Then
+        MsgBox ("未找到扩容池文件！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
+    If Dir(pth & "原始数据\" & "预约池\" & TextBox1.Text & ".xls", vbDirectory) = vbNullString Then
+        MsgBox ("未找到预约池文件！")
+        TextBox1.Enabled = True
+        CommandButton1.Enabled = True
+        CommandButton2.Enabled = True
+        Exit Sub
+    End If
 
     '复制底板和原始数据
     FileCopy NegativePath1, HomePath   '
@@ -169,7 +174,6 @@ Private Sub CommandButton1_Click()
     FileCopy pth & "原始数据\" & "待装池\" & TextBox1.Text & ".xls", DispatchPath
     FileCopy pth & "原始数据\" & "扩容池\" & TextBox1.Text & ".xls", ExpansionPath
     FileCopy pth & "原始数据\" & "预约池\" & TextBox1.Text & ".xls", AppointmentPath
-
 
 
    ' 打开所需文件
@@ -183,29 +187,8 @@ Private Sub CommandButton1_Click()
     Workbooks.Open Filename:=ExpansionPath, AddToMru:=True
     Workbooks.Open Filename:=AppointmentPath, AddToMru:=True
 
-''
-    '处理新增量_装机量数据
-  
-    
-    
-    
-    
-    
-    
     
 
-    
-
-'
-'
-'
-'     MsgBox ("结束")
-     
-   ' HomeName
-    'UserName
-    
-
-    
     Call 初始化(HomeName, UseName, Year, Month, Day)
     Call 新增量_装机量_去重(AddName, AddNameNull, InstallName, InstallNameNull)
     Call 处理数据_新增量_装机量(AddName, AddNameNull, HomeName, InstallName, InstallNameNull, Year, Month, Day)
@@ -216,7 +199,17 @@ Private Sub CommandButton1_Click()
     Call 复制_专用日报_待装天数模板(HomeName, UseName)
     
     
-
+    '关闭文件
+    
+    
+    
+    '复制文件
+    
+    
+    '恢复使能
+    TextBox1.Enabled = True
+    CommandButton1.Enabled = True
+    CommandButton2.Enabled = True
      MsgBox "结束"
      
     
@@ -588,6 +581,17 @@ Function 处理数据_新增量_装机量(AddName, AddNameNull, HomeName, InstallName, Ins
     Selection.Formula = "=sum(R16:R23)"
     
     
+    Range("K3:V11").Select
+    Selection.Copy
+    Range("K3:V11").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
+       
+    Range("K16:V24").Select
+    Selection.Copy
+    Range("K16:V24").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
+  
+   
      Cells.Select
      Cells.AutoFilter
 
@@ -847,6 +851,19 @@ Function 处理_专用日报_有效带宽_三日预约量(InstallName, InstallNameNull, UseName
     Selection.Formula = "=sum(D4:D11)"
     Range("I12").Select
     Selection.Formula = "=sum(I4:I11)"
+    
+    '转为数字格式
+    
+    Range("B4:D11").Select
+    Selection.Copy
+    Range("B4:D11").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
+    
+    Range("I4:I11").Select
+    Selection.Copy
+    Range("I4:I11").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
+   
 
 End Function
 
@@ -1135,6 +1152,11 @@ Function 处理_专用日报_待装工单(DispatchName, ExpansionName, AppointmentName, Ru
     Range("B11").Select
     Selection.Formula = "=sum(C11:G11)"
     
+    Range("D3:G11").Select
+    Selection.Copy
+    Range("D3:G11").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
+  
     
     
     
@@ -1253,10 +1275,16 @@ Function 统计_新家客_待装天数_ImsOtt(RunName, RunNameNull, HomeName, UseName)
     Range("D10").Select
     Selection.Formula = "=COUNTIFS([" & RunName & "]Sheet1!$U$1:$U$65536," & """" & "邹平市" & """" & ")"
     '求和
+    
     Range("D11").Select
     Selection.Formula = "=sum(D3:D10)"
     Range("E11").Select
     Selection.Formula = "=sum(E3:E10)"
+       
+    Range("D3:E11").Select
+    Selection.Copy
+    Range("D3:E11").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
     
     
     '复制
@@ -1318,7 +1346,7 @@ Function 统计_新家客_待装天数_ImsOtt(RunName, RunNameNull, HomeName, UseName)
      
      
     
-      
+
     
     
     
@@ -1369,29 +1397,12 @@ Function 新增量_装机量_去重(AddName, AddNameNull, InstallName, InstallNameNull)
 End Function
     
 
-Private Sub CommandButton2_Click()
-
-End Sub
-
 Private Sub CommandButton3_Click()
- For i = 11 To 4 Step -1
-     
-     XX = Range("A" & i).Value
-     
-     For y = 11 To 4 Step -1
-        YY = Range("J" & y).Value
-        
-        If InStr(XX, YY) <> 0 Then '@就是要找到指定的特定字符 可以改成你指定的其他字符
-            MsgBox (XX & "结束" & YY & "DD" & y & ":" & i)
-            ' Range("B" & i).EntireRow.Delete 'E列是指定要查找的列.狂野改成你指定的其他列
-        End If
-        
-        Next
-     Next
 
 
 End Sub
 
-Private Sub UserForm_Click()
+
+Private Sub CommandButton2_Click()
 
 End Sub
