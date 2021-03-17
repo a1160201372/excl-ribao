@@ -200,6 +200,7 @@ Private Sub CommandButton1_Click()
     
     
     '关闭文件
+    Call CloseFile(HomeName, HomePath, UseName, UsePath, AddName, AddPath, RunName, RunPath, InstallName, InstallPath, DispatchName, DispatchPath, ExpansionName, ExpansionPath, AppointmentName, AppointmentPath)
     
     
     
@@ -220,6 +221,45 @@ Private Sub CommandButton1_Click()
     
     
 End Sub
+Function CloseFile(HomeName, HomePath, UseName, UsePath, AddName, AddPath, RunName, RunPath, InstallName, InstallPath, DispatchName, DispatchPath, ExpansionName, ExpansionPath, AppointmentName, AppointmentPath)
+        '原始位置信息
+
+    
+    '文件保存
+    Windows(HomeName).Activate
+    Application.RecentFiles.Add Name:=HomePath
+    ActiveWorkbook.Save
+    
+    Windows(HomeName).Activate
+    Application.RecentFiles.Add Name:=UsePath
+    ActiveWorkbook.Save
+    
+    Windows(AddName).Activate
+    ActiveWorkbook.Close (False)
+    Windows(RunName).Activate
+    ActiveWorkbook.Close (False)
+    Windows(InstallName).Activate
+    ActiveWorkbook.Close (False)
+    Windows(DispatchName).Activate
+    ActiveWorkbook.Close (False)
+    Windows(ExpansionName).Activate
+    ActiveWorkbook.Close (False)
+    Windows(AppointmentName).Activate
+    ActiveWorkbook.Close (False)
+    
+    Kill AddPath
+    Kill InstallPath
+    Kill RunPath
+    Kill DispatchPath
+    Kill ExpansionPath
+    Kill AppointmentPath
+    
+
+    
+
+    
+
+End Function
 Function 初始化(HomeName, UseName, Year, Month, Day)
     Call 家客_家客_初始化(HomeName, Month, Day)
     Call 家客_待装天数_新__初始化(HomeName, Day)
@@ -282,6 +322,7 @@ Function 处理数据_新增量_装机量(AddName, AddNameNull, HomeName, InstallName, Ins
 
     '删除 特定字符
     Windows(AddName).Activate
+    Sheets(AddNameNull).Activate
     Dim EndH, i As Long
     EndH = Range("B65536").End(xlUp).Row
     
@@ -1333,10 +1374,10 @@ Function 统计_新家客_待装天数_ImsOtt(RunName, RunNameNull, HomeName, UseName)
         For y = 11 To 4 Step -1
            YY = Range("J" & y).Value
            If InStr(XX, YY) <> 0 Then '@就是要找到指定的特定字符 可以改成你指定的其他字符
-             '  MsgBox (XX & "结束" & YY & "DD" & y & ":" & i)
-               Range("K" & i & ":M" & i).Select
+               'MsgBox (XX & "结束" & YY & "DD" & y & ":" & i)
+               Range("K" & y & ":M" & y).Select
                Selection.Copy
-               Range("E" & y & ":G" & y).Select
+               Range("E" & i & ":G" & i).Select
                Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
            End If
         Next
@@ -1404,5 +1445,17 @@ End Sub
 
 
 Private Sub CommandButton2_Click()
-
+  For i = 11 To 4 Step -1
+        XX = Range("A" & i).Value
+        For y = 11 To 4 Step -1
+           YY = Range("J" & y).Value
+           If InStr(XX, YY) <> 0 Then '@就是要找到指定的特定字符 可以改成你指定的其他字符
+               MsgBox (XX & "结束" & YY & "DD" & y & ":" & i)
+               Range("K" & y & ":M" & y).Select
+               Selection.Copy
+               Range("E" & i & ":G" & i).Select
+               Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlPasteSpecialOperationNone, SkipBlanks:=False, Transpose:=False
+           End If
+        Next
+     Next
 End Sub
